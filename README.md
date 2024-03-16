@@ -1,5 +1,5 @@
 # StudentReportdetails
-major features of the object-oriented C++ programming  language
+major features of the object-oriented C++ programming   like class,object,inheritance,polymorphism,abstraction,encapsculation were used
 
 <img width="336" alt="image" src="https://github.com/siddartha-004/StudentReportdetails/assets/113697558/8ff58819-18aa-4846-a902-b5c1e9d70c25">
 <img width="333" alt="image" src="https://github.com/siddartha-004/StudentReportdetails/assets/113697558/c5de0457-7be6-4ba0-89ff-4be952eb36c0">

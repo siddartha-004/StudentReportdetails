@@ -1,16 +1,16 @@
 # StudentReportdetails
 major features of the object-oriented C++ programming   like class,object,inheritance,polymorphism,abstraction,encapsculation were used
-<p>Class : Classes included are College ,student_detail, Student ,report.
-Object : Instance is created for class report to get the student report of any student.
-Encapsulation : Encapsulation is used in all the classes by binding data members and 
-member functions together as a class.
-Abstraction : Abstraction is implemented in displaying the student report along with sgpa
-and cgpa of student hiding the actual business logic and unnecessary details behind.
-Inheritance : Class report is the child class derived from parent class student_detail in 
-public mode.
-Polymorphism : Compile time polymorphism is implemented by overloading the member 
+<p>Class : Classes included are College ,student_detail, Student ,report.</p>
+<p>Object : Instance is created for class report to get the student report of any student.</p>
+<p>Encapsulation : Encapsulation is used in all the classes by binding data members and 
+member functions together as a class.</p>
+<p>Abstraction : Abstraction is implemented in displaying the student report along with sgpa
+and cgpa of student hiding the actual business logic and unnecessary details behind.</p>
+<p>Inheritance : Class report is the child class derived from parent class student_detail in 
+public mode.</p>
+<p>Polymorphism : Compile time polymorphism is implemented by overloading the member 
 function void InsertData () in class Student and Runtime polymorphism is implemented by 
-overriding the member function void cal () of super class student_detail in sub class report.
+overriding the member function void cal () of super class student_detail in sub class report.</p>
 </p>
 <img width="336" alt="image" src="https://github.com/siddartha-004/StudentReportdetails/assets/113697558/8ff58819-18aa-4846-a902-b5c1e9d70c25">
 <img width="333" alt="image" src="https://github.com/siddartha-004/StudentReportdetails/assets/113697558/c5de0457-7be6-4ba0-89ff-4be952eb36c0">

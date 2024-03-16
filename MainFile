@@ -1,0 +1,300 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+class College
+{
+protected:
+	string name,rollno;
+public:
+	virtual void cal()=0;
+};
+class student_detail
+{
+	public:
+		string name,rollno;
+		student_detail()
+		{
+			cout<<"Enter roll number of student:";
+			cin>>rollno;
+			cout<<"Enter name of student:";
+			cin>>name;
+		}
+		void cal()
+		{
+    int l;
+    cout<<"-------------- CGPA Calculating -----------------\n\n"<<endl;
+    cout<<"How many semester results do you want input? :";
+    cin>>l;
+    cout<<"\n\n"<<endl;
+    float semrs[l];
+    int i;
+
+    for(i=0;i<l;i++)
+    {
+        cout<<" Enter Semester "<<i+1<<" Result(GPA): ";
+        cin>>semrs[i];
+        cout<<"\n"<<endl;
+    }
+
+    float semtot=0;
+    for(int j=0;j<l;j++)
+    {
+        semtot=semtot+semrs[j];
+    }
+
+    cout<<"******** Your CGPA is "<<semtot/l<<" **********"<<endl;
+
+		}
+};
+
+class report:public student_detail
+{
+	public:
+	int n;
+	report()
+	{
+	cout<<"Enter number of subjects:";
+	cin>>n;
+    }
+
+    void cal()
+    {
+	
+	int mark[n],credit[n],point[n],i;
+	string sub[n],grade[n];
+    for(i=0;i<n;i++)
+    {
+    	cout<<"Enter the subject name "<<": ";
+    	cin>>sub[i];
+    	cout<<endl;
+        cout<<"Enter the credit for the subject "<<i+1<<": ";
+        cin>>credit[i];
+        cout<<endl;
+        cout<<"Enter the mark of the subject "<<i+1<<": ";
+        cin>>mark[i];
+    }
+    for(int i=0;i<n;i++)
+    {
+    	if(mark[i]>90)
+    	{
+    		point[i]=10;
+    		grade[i]='O';
+		}
+		else if(mark[i]>80)
+		{
+			point[i]=9;
+			grade[i]='A';
+		}
+			else if(mark[i]>70)
+		{
+			point[i]=8;
+			grade[i]='B';
+		}
+			else if(mark[i]>60)
+		{
+			point[i]=7;
+			grade[i]='C';
+		}
+		else if(mark[i]>50)
+		{
+			point[i]=6;
+			grade[i]='D';
+		}
+		else if(mark[i]>40)
+		{
+			point[i]=5;
+			grade[i]='E';
+		}
+		else
+		{
+			point[i]=4;
+			grade[i]='F';
+		}
+	}
+
+    float sum=0;
+    float tot;
+    for(int j=0;j<n;j++)
+    {
+        tot=credit[j]*point[j];
+        sum=sum+tot;
+    }
+
+    float totCr=0;
+    for(int k=0;k<n;k++)
+    {
+        totCr=totCr+credit[k];
+    }
+	 cout<<"     Name: "<<name<<"   Rollno:  "<<rollno<<endl;
+       cout<<"    ***          student report            ***    "<<endl;
+       
+    	cout<<"      -------------------------------------      "<<endl;
+    	cout<<"      | subject | credit | scored | grade |      "<<endl;
+    	for(i=0;i<n;i++)
+    	{
+    	 cout<<"      |  "<<sub[i]<<"    |   "<<credit[i]<<"    |   "<<point[i]<<"   |   "<<grade[i]<<"   |      "<<endl;
+		}
+		cout<<"      --------------------------------------"<<endl;
+         cout<<"                            SGPA: "<<sum/totCr<<" ."<<endl;
+
+}
+    
+};
+
+class Student
+{
+private:
+	string name;
+	string roll;
+	
+public:
+
+	
+	void InsertData(string n, string r)
+	{
+		name = n;
+		roll = r;
+		
+	}
+	void InsertData(string r)
+	{
+		roll=r;
+	}
+
+	string GetRoll()
+	{
+		return roll;
+	}
+
+
+};
+
+
+vector<Student> database;
+int databaseSize;
+
+
+
+void ResizeDatabase()
+{
+	database.resize(databaseSize);
+}
+
+void Add()
+{
+	string name;
+	string roll;
+	int cho;
+
+     cout<<"Enter your choice"<<endl;
+     cout<<"1.insert name,rollno"<<endl;
+     cout<<"2.insert only rollno"<<endl;
+     cin>>cho;
+    if(cho==1)
+    {
+	
+	cout << "\nPLEASE ENTER THE DETAILS OF THE STUDENT:" << endl;
+	cout << "NAME: ";
+	cin.ignore();
+	getline(cin, name);
+	cout << "ROLL: ";
+	cin >> roll;
+
+	cout << "\nSTUDENT DATA ADDED TO DATABASE" << endl;
+
+	databaseSize++;
+	ResizeDatabase();
+	database[databaseSize - 1].InsertData(name, roll);
+}
+else
+{
+		cout << "\nPLEASE ENTER THE DETAILS OF THE STUDENT:" << endl;
+
+	cout << "ROLL: ";
+	cin >> roll;
+
+	cout << "\nSTUDENT DATA ADDED TO DATABASE" << endl;
+
+	databaseSize++;
+	ResizeDatabase();
+	database[databaseSize - 1].InsertData(roll);
+}
+}
+
+void Delete(string roll)
+{
+	for (int i = 0; i < databaseSize; i++)
+		if (database[i].GetRoll() == roll)
+		{
+			database.erase(database.begin() + i);
+			cout << "\nSTUDENT WITH ROLL " << roll << " HAS BEEN REMOVED FROM THE DATABASE\n" << endl;
+			databaseSize--;
+			return;
+		}
+
+	cout << "\nTHE ENTERED ROLL(" << roll << ") DOES NOT EXIST.\n" << endl;
+}
+void ShowStats()
+{
+	cout << "\nSIZE: " << databaseSize << endl;
+	cout << "STUDENT LIST (ROLL): ";
+
+	if (databaseSize == 0)
+	{
+		cout << "DATABASE IS EMPTY\n" << endl;
+		return;
+	}
+
+	for (int i = 0; i < databaseSize; i++)
+		cout << database[i].GetRoll() + " ";
+
+	cout << "\n" << endl;
+}
+int main()
+{
+	int choice;
+	string roll;
+	char ch;
+	do{
+	
+	cout<<"*** Welcome to student report management system ***"<<endl;
+	cout<<"----------------------------------------------------"<<endl;
+	cout<<"|   choose any one otion mentioned below           |"<<endl;
+	cout<<"|    1.Add students details to database            |"<<endl;
+	cout<<"|    2.Delete student details from database        |"<<endl;
+	cout<<"|    3.Database status                             |"<<endl;
+	cout<<"|    4.Get student report                          |"<<endl;
+	cout<<"|    5.Exit                                        |"<<endl;
+	cout<<"----------------------------------------------------"<<endl;
+	cin>>choice;
+	switch(choice)
+	{
+			case 1:
+			Add();
+			break;
+
+		case 2:
+			cout << "ROLL: ";
+			cin >> roll;
+			Delete(roll);
+			break;
+		case 3:	ShowStats();
+			break;
+
+		case 4:
+			report o;
+			o.cal();
+			cout<<"If you want to calculate cgpa pls enter 'Y'";
+			cin>>ch;
+			if(ch=='Y')
+			{
+				o.student_detail::cal();
+			}
+			break;
+		
+		}
+	}while(choice!=5);
+	
+	return 0;
+	
+}
